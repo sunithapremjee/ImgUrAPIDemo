@@ -7,12 +7,11 @@ import androidx.room.PrimaryKey
 import com.imgur.imgurapidemo.domain.ImageDetails
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+
 @Entity
 data class DatabaseImageDetails constructor(
+
     @PrimaryKey
-    var imageId: Long = 0L,
-    @ColumnInfo(name = "id")
     val id: String,
     @ColumnInfo(name = "link")
     val link: String,
@@ -21,20 +20,17 @@ data class DatabaseImageDetails constructor(
     val title:String,
 
     val views:Long,
-    val votes:Long): Parcelable {
-
-}
+    val vote:Long)
 
 fun List<DatabaseImageDetails>.asDomainModel(): List<ImageDetails> {
     return map {
         ImageDetails(
-            imageId = it.imageId,
             id = it.id,
             link = it.link,
             nsfw = it.nsfw,
             title = it.title,
             views = it.views,
-            votes = it.votes
+            vote = it.vote
             )
     }
 }

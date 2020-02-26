@@ -8,12 +8,10 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 
-
+@Parcelize
 data class ImageDetails(
 
-    var imageId: Long = 0L,
-
-    val id: String,
+     val id: String,
 
     val link: String,
 
@@ -22,5 +20,7 @@ data class ImageDetails(
     val title:String,
 
     val views:Long,
-    val votes:Long
-    )
+    val vote:Long
+    ): Parcelable {
+
+}

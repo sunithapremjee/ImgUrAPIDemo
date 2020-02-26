@@ -24,7 +24,7 @@ interface ImageDatabaseDao {
     /**
      * Selects and returns the row that matches
      */
-    @Query("SELECT * from DatabaseImageDetails WHERE imageId = :key")
+    @Query("SELECT * from DatabaseImageDetails WHERE id = :key")
     fun get(key: Long): DatabaseImageDetails?
 
     /**
@@ -40,7 +40,7 @@ interface ImageDatabaseDao {
      *
      * sorted in descending order.
      */
-    @Query("SELECT * FROM DatabaseImageDetails ORDER BY imageId DESC")
+    @Query("SELECT * FROM DatabaseImageDetails")
     fun getAllImageDetails(): LiveData<List<DatabaseImageDetails>>
 
 
@@ -48,7 +48,7 @@ interface ImageDatabaseDao {
     /**
      * Selects and returns the image with given id.
      */
-    @Query("SELECT * from DatabaseImageDetails WHERE imageId = :key")
+    @Query("SELECT * from DatabaseImageDetails WHERE id = :key")
     fun getImageWithId(key: Long): LiveData<DatabaseImageDetails>
 }
 

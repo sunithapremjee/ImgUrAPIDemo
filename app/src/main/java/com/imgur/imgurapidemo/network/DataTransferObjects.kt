@@ -12,7 +12,6 @@ data class NetworkImageDetailsContainer(val imageDetails: List<NetworkImageDetai
  */
 @JsonClass(generateAdapter = true)
 data class NetworkImageDetails(
-    var imageId: Long = 0L,
 
     val id: String,
 
@@ -24,7 +23,7 @@ data class NetworkImageDetails(
 
     val views:Long,
 
-    val votes:Long)
+    val vote:Long)
 
 /**
  * Convert Network results to database objects
@@ -32,13 +31,13 @@ data class NetworkImageDetails(
 fun NetworkImageDetailsContainer.asDomainModel(): List<ImageDetails> {
     return imageDetails.map {
         ImageDetails(
-            imageId = it.imageId,
+
             id = it.id,
             link = it.link,
             nsfw = it.nsfw,
             title = it.title,
             views = it.views,
-            votes = it.votes
+            vote = it.vote
         )
     }
 }
@@ -46,12 +45,11 @@ fun NetworkImageDetailsContainer.asDomainModel(): List<ImageDetails> {
 fun NetworkImageDetailsContainer.asDatabaseModel(): Array<DatabaseImageDetails> {
     return imageDetails.map {
         DatabaseImageDetails(
-            imageId = it.imageId,
             id = it.id,
             link = it.link,
             nsfw = it.nsfw,
             title = it.title,
             views = it.views,
-            votes = it.votes)
+            vote = it.vote)
     }.toTypedArray()
 }

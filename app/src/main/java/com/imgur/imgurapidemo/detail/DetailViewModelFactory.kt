@@ -3,7 +3,7 @@ package com.imgur.imgurapidemo.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.imgur.imgurapidemo.database.ImageDetails
+import com.imgur.imgurapidemo.domain.ImageDetails
 
 class DetailViewModelFactory(
     private val imageDetails: ImageDetails,

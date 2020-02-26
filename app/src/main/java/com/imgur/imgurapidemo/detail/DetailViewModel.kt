@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-import com.imgur.imgurapidemo.database.ImageDetails
+import com.imgur.imgurapidemo.domain.ImageDetails
 
 class DetailViewModel(imageDetails: ImageDetails, app: Application) : AndroidViewModel(app) {
     private val _selectedImage = MutableLiveData<ImageDetails>()

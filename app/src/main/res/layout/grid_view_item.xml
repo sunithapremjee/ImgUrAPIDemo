@@ -5,7 +5,7 @@
     <data>
         <variable
             name="imagedetails"
-            type="com.imgur.imgurapidemo.database.ImageDetails" />
+            type="com.imgur.imgurapidemo.domain.ImageDetails" />
     </data>
     <ImageView
         android:id="@+id/id_image"

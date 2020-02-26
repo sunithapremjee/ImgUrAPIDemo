@@ -11,11 +11,16 @@ import kotlinx.android.parcel.Parcelize
 
 data class ImageDetails(
 
-    var id: Long = 0L,
+    var imageId: Long = 0L,
 
-    val imageId: String,
+    val id: String,
 
-    val imgSrcUrl: String,
+    val link: String,
 
-    val nsfw:Boolean
+    val nsfw:Boolean,
+
+    val title:String,
+
+    val views:Long,
+    val votes:Long
     )

@@ -11,23 +11,30 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 data class DatabaseImageDetails constructor(
     @PrimaryKey
-    var id: Long = 0L,
-    @ColumnInfo(name = "imageid")
-    val imageId: String,
-    @ColumnInfo(name = "imageURL")
-    val imgSrcUrl: String,
+    var imageId: Long = 0L,
+    @ColumnInfo(name = "id")
+    val id: String,
+    @ColumnInfo(name = "link")
+    val link: String,
 
-    val nsfw:Boolean): Parcelable {
+    val nsfw:Boolean,
+    val title:String,
+
+    val views:Long,
+    val votes:Long): Parcelable {
 
 }
 
 fun List<DatabaseImageDetails>.asDomainModel(): List<ImageDetails> {
     return map {
         ImageDetails(
-            id = it.id,
             imageId = it.imageId,
-            imgSrcUrl = it.imgSrcUrl,
-            nsfw = it.nsfw
+            id = it.id,
+            link = it.link,
+            nsfw = it.nsfw,
+            title = it.title,
+            views = it.views,
+            votes = it.votes
             )
     }
 }

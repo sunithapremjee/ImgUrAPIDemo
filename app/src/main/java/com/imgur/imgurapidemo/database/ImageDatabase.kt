@@ -1,12 +1,15 @@
 package com.imgur.imgurapidemo.database
 
 import android.content.Context
+import androidx.databinding.adapters.Converters
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.imgur.imgurapidemo.domain.ImageDetails
 
-@Database(entities = [DatabaseImageDetails::class], version = 3, exportSchema = false)
+@Database(entities = [DatabaseImageDetails::class], version = 6, exportSchema = false)
+@TypeConverters( Converters::class)
 abstract class ImageDatabase : RoomDatabase() {
 
     /**

@@ -8,8 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.imgur.imgurapidemo.domain.ImageDetails
 
-@Database(entities = [DatabaseImageDetails::class], version = 6, exportSchema = false)
-@TypeConverters( Converters::class)
+@Database(entities = [DatabaseImageDetails::class], version = 8, exportSchema = false)
 abstract class ImageDatabase : RoomDatabase() {
 
     /**

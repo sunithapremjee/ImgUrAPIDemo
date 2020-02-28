@@ -7,7 +7,9 @@ import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.RawValue
 
 @JsonClass(generateAdapter = true)
-data class NetworkImageDetailsContainer(val imageDetails: List<NetworkImageDetails>)
+data class NetworkImageDetailsContainer(
+    @Json(name = "data")
+    val imageDetails: List<NetworkImageDetails>)
 
 /**
  * ImageDetails.
@@ -33,7 +35,7 @@ data class NetworkImageDetails(
     @Json(name = "favorite")
 var favorite: Boolean? = null,
     @Json(name = "description")
-    var description: Any? = null,
+    var description: String? = null,
     @Json(name = "datetime")
     var datetime: Int? = null,
     @Json(name = "type")
@@ -48,21 +50,21 @@ var favorite: Boolean? = null,
     var size: Int? = null,
 
     @Json(name = "bandwidth")
-    var bandwidth: Int? = null,
+    var bandwidth: Long? = null,
     @Json(name = "section")
 var section: String? = null,
     @Json(name = "account_url")
-var accountUrl: Any? = null,
+var accountUrl: String? = null,
     @Json(name = "account_id")
-var accountId: Any? = null,
+var accountId: Int? = null,
     @Json(name = "is_ad")
 var isAd: Boolean? = null,
     @Json(name = "in_most_viral")
 var inMostViral: Boolean? = null,
     @Json(name = "has_sound")
 var hasSound: Boolean? = null,
-    @Json(name = "tags")
-var tags:  List<Any>? = null,
+   // @Json(name = "tags")
+//var tags:  List<String>? = null,
     @Json(name = "ad_type")
 var adType: Int? = null,
     @Json(name = "ad_url")
@@ -72,18 +74,18 @@ var edited: Int? = null,
     @Json(name = "in_gallery")
 var inGallery: Boolean? = null,
 
-    @Json(name = "ad_config")
-var adConfig: AdConfig? = null,
+   // @Json(name = "ad_config")
+//var adConfig: AdConfig? = null,
     @Json(name = "comment_count")
-var commentCount: Any? = null,
+var commentCount: Int? = null,
     @Json(name = "favorite_count")
-var favoriteCount: Any? = null,
+var favoriteCount: Int? = null,
     @Json(name = "ups")
-var ups:  Any? = null,
+var ups:  Integer? = null,
     @Json(name = "downs")
-var downs:  Any? = null,
+var downs:  Integer? = null,
     @Json(name = "points")
-var points: Any? = null,
+var points: Integer? = null,
     @Json(name = "score")
 var score: Int? = null,
     @Json(name = "is_album")
@@ -131,7 +133,7 @@ fun NetworkImageDetailsContainer.asDomainModel(): List<ImageDetails> {
             isAd =it.isAd,
             inMostViral = it.inMostViral,
             hasSound = it.hasSound,
-            tags = it.tags,
+       //     tags = it.tags,
             adType = it.adType,
             adUrl =it.adUrl,
             edited = it.edited,
@@ -174,7 +176,7 @@ fun NetworkImageDetailsContainer.asDatabaseModel(): Array<DatabaseImageDetails> 
             isAd =it.isAd,
             inMostViral = it.inMostViral,
             hasSound = it.hasSound,
-            tags = it.tags,
+        //    tags = it.tags,
             adType = it.adType,
             adUrl =it.adUrl,
             edited = it.edited,

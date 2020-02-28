@@ -13,10 +13,10 @@ data class DatabaseImageDetails constructor(
     var title: String? = null,
     var link: String? = null,
     var nsfw: Boolean? = null,
-    var vote: Any? = null,
+    var vote: Long? = null,
     var views: Int? = null,
 
-    var description:  Any? = null,
+    var description:  String? = null,
 
     var datetime: Int? = null,
 
@@ -30,15 +30,15 @@ data class DatabaseImageDetails constructor(
 
     var size: Int? = null,
 
-    var bandwidth: Int? = null,
+    var bandwidth: Long? = null,
 
     var favorite: Boolean? = null,
 
     var section: String? = null,
 
-    var accountUrl:  Any? = null,
+    var accountUrl:  String? = null,
 
-    var accountId:  Any? = null,
+    var accountId:  Int? = null,
 
     var isAd: Boolean? = null,
 
@@ -46,7 +46,7 @@ data class DatabaseImageDetails constructor(
 
     var hasSound: Boolean? = null,
 
-    var tags:  List<Any>? = null,
+  //  var tags:  List<String>? = null,
 
     var adType: Int? = null,
 
@@ -56,17 +56,17 @@ data class DatabaseImageDetails constructor(
 
     var inGallery: Boolean? = null,
 
-    var adConfig:  AdConfig? = null,
+   // var adConfig:  AdConfig? = null,
 
-    var commentCount:  Any? = null,
+    var commentCount:  Int? = null,
 
-    var favoriteCount:  Any? = null,
+    var favoriteCount:  Int? = null,
 
-    var ups:  Any? = null,
+    var ups:  Integer? = null,
 
-    var downs:  Any? = null,
+    var downs:  Integer? = null,
 
-    var points:  Any? = null,
+    var points:  Integer? = null,
 
     var score: Int? = null,
 
@@ -110,12 +110,12 @@ fun List<DatabaseImageDetails>.asDomainModel(): List<ImageDetails> {
             isAd =it.isAd,
             inMostViral = it.inMostViral,
             hasSound = it.hasSound,
-            tags = it.tags,
+           // tags = it.tags,
             adType = it.adType,
             adUrl =it.adUrl,
             edited = it.edited,
             inGallery =it.inGallery,
-            adConfig = it.adConfig,
+          //  adConfig = it.adConfig,
             commentCount = it.commentCount,
 
             favoriteCount = it.favoriteCount,

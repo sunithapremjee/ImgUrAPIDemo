@@ -7,7 +7,7 @@ import com.imgur.imgurapidemo.domain.ImageDetails
 @Dao
 interface ImageDatabaseDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg imageDetails: DatabaseImageDetails)
 
 

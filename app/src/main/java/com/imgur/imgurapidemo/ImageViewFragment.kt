@@ -57,7 +57,7 @@ class ImageViewFragment : Fragment() {
         viewModel.navigateToSelectedImage.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
                 // Must find the NavController from the Fragment
-              //  this.findNavController().navigate(ImageViewFragmentDirections.actionShowDetail(it))
+                this.findNavController().navigate(ImageViewFragmentDirections.actionShowDetail(it))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayImageDetailsComplete()
             }

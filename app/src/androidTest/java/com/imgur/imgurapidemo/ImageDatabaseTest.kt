@@ -42,7 +42,7 @@ class ImageDatabaseTest{
     fun insertAndGetImageDetails() {
         val imageDetails = DatabaseImageDetails("TestId")
         imageDao.insert(imageDetails)
-        val imageDetailsList = imageDao.getAllImageDetails()
-        assertEquals(imageDetails?.id, "TestId")
+
+        assertEquals(imageDao.get("TestId")?.id, "TestId")
     }
 }

@@ -27,6 +27,11 @@ interface ImageDatabaseDao {
     @Query("SELECT * from DatabaseImageDetails WHERE id = :key")
     fun get(key: Long): DatabaseImageDetails?
 
+   /* Delete all items with nsfw = true
+   * */
+    @Query("DELETE from DatabaseImageDetails WHERE nsfw = 'true'")
+    fun deleteNSFWItems(): Int
+
     /**
      * Deletes all values from the table.
      *

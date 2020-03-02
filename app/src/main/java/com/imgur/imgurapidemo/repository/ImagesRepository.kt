@@ -36,4 +36,11 @@ class ImagesRepository(private val database: ImageDatabase) {
             database.imageDatabaseDao.insert(*imageDetailsList.asDatabaseModel())
         }
     }
+
+    suspend fun deleteNSFWImageDetails() {
+        withContext(Dispatchers.IO) {
+
+            database.imageDatabaseDao.deleteNSFWItems()
+        }
+    }
 }

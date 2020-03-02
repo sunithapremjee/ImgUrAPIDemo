@@ -77,4 +77,11 @@ class ImageViewViewModel(
         _navigateToSelectedImage.value = null
     }
 
+    fun deleteNSFW()
+    {
+        coroutineScope.launch {
+            imagesRepository.deleteNSFWImageDetails()
+
+        }
+    }
 }

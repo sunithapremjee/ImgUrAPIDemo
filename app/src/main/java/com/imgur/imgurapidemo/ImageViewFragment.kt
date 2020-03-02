@@ -81,6 +81,10 @@ class ImageViewFragment : Fragment() {
                 viewModel.deleteNSFW()
                 return true
             }
+            R.id.refresh -> {
+                viewModel.refreshImageDetails()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

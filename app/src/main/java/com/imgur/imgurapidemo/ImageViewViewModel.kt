@@ -46,9 +46,7 @@ class ImageViewViewModel(
      * init{} is called immediately when this ViewModel is created.
      */
     init {
-        coroutineScope.launch {
-            imagesRepository.refreshImageDetails()
-        }
+        refreshImageDetails()
     }
 
     val imagedetailsList = imagesRepository.imagedetailsList
@@ -82,6 +80,12 @@ class ImageViewViewModel(
         coroutineScope.launch {
             imagesRepository.deleteNSFWImageDetails()
 
+        }
+    }
+    fun refreshImageDetails()
+    {
+        coroutineScope.launch {
+            imagesRepository.refreshImageDetails()
         }
     }
 }

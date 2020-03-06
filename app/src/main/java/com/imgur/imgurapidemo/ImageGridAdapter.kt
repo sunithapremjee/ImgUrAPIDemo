@@ -2,22 +2,24 @@ package com.imgur.imgurapidemo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.imgur.imgurapidemo.database.DatabaseImageDetails
 import com.imgur.imgurapidemo.databinding.GridViewItemBinding
 import com.imgur.imgurapidemo.domain.ImageDetails
 import timber.log.Timber
 
 class ImageGridAdapter( val onClickListener: OnClickListener ) :
-    ListAdapter<ImageDetails, ImageGridAdapter.ImageDetailsViewHolder>(DiffCallback) {
+    PagedListAdapter<DatabaseImageDetails, ImageGridAdapter.ImageDetailsViewHolder>(DiffCallback) {
     /**
      * The ImageDetailsViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [ImageDetails] information.
      */
     class ImageDetailsViewHolder(private var binding: GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(ImageDetails: ImageDetails) {
+        fun bind(ImageDetails: DatabaseImageDetails) {
 
             Timber.d("ImageDetailsViewHolder:bind")
 
@@ -32,12 +34,12 @@ class ImageGridAdapter( val onClickListener: OnClickListener ) :
      * Allows the RecyclerView to determine which items have changed when the [List] of [ImageDetails]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<ImageDetails>() {
-        override fun areItemsTheSame(oldItem: ImageDetails, newItem: ImageDetails): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<DatabaseImageDetails>() {
+        override fun areItemsTheSame(oldItem: DatabaseImageDetails, newItem: DatabaseImageDetails): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: ImageDetails, newItem: ImageDetails): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseImageDetails, newItem: DatabaseImageDetails): Boolean {
             return oldItem.id == newItem.id
         }
     }
@@ -56,8 +58,8 @@ class ImageGridAdapter( val onClickListener: OnClickListener ) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [ImageDetails]
      */
-    class OnClickListener(val clickListener: (ImageDetails: ImageDetails) -> Unit) {
-        fun onClick(ImageDetails: ImageDetails) = clickListener(ImageDetails)
+    class OnClickListener(val clickListener: (ImageDetails: DatabaseImageDetails) -> Unit) {
+        fun onClick(ImageDetails: DatabaseImageDetails) = clickListener(ImageDetails)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -70,8 +72,12 @@ class ImageGridAdapter( val onClickListener: OnClickListener ) :
     override fun onBindViewHolder(holder: ImageDetailsViewHolder, position: Int) {
         val ImageDetails = getItem(position)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(ImageDetails)
+            if (ImageDetails != null) {
+                onClickListener.onClick(ImageDetails)
+            }
         }
-        holder.bind(ImageDetails)
+        if (ImageDetails != null) {
+            holder.bind(ImageDetails)
+        }
     }
 }

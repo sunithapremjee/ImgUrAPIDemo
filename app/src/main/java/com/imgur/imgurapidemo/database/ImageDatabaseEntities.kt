@@ -1,10 +1,12 @@
 package com.imgur.imgurapidemo.database
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.imgur.imgurapidemo.domain.ImageDetails
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 @Entity
 data class DatabaseImageDetails constructor(
 
@@ -71,7 +73,7 @@ data class DatabaseImageDetails constructor(
     var score: Int? = null,
 
     var isAlbum: Boolean? = null
-)
+) : Parcelable
 
 data class AdConfig (
 

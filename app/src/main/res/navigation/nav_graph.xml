@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_image_detail">
         <argument
             android:name="selectedImage"
-            app:argType="com.imgur.imgurapidemo.domain.ImageDetails"
+            app:argType="com.imgur.imgurapidemo.database.DatabaseImageDetails"
             />
     </fragment>
 

@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
+import com.imgur.imgurapidemo.database.DatabaseImageDetails
 import com.imgur.imgurapidemo.database.ImageDatabase
 import com.imgur.imgurapidemo.database.ImageDatabaseDao
 import com.imgur.imgurapidemo.domain.ImageDetails
@@ -23,14 +25,11 @@ class ImageViewViewModel(
 
     val TAG:String = "ImageViewViewModel"
 
-    private val _imagedetails = MutableLiveData<List<ImageDetails>>()
 
-    val imagedetails: LiveData<List<ImageDetails>>
-    get() = _imagedetails
 
-    private val _navigateToSelectedImage = MutableLiveData<ImageDetails>()
+    private val _navigateToSelectedImage = MutableLiveData<DatabaseImageDetails>()
 
-    val navigateToSelectedImage: LiveData<ImageDetails>
+    val navigateToSelectedImage: LiveData<DatabaseImageDetails>
         get() = _navigateToSelectedImage
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -45,10 +44,13 @@ class ImageViewViewModel(
     /**
      * init{} is called immediately when this ViewModel is created.
      */
-    init {
+   /* init {
         refreshImageDetails()
-    }
+    }*/
 
+    init {
+        imagesRepository.InitialzeImageDetails()
+    }
     val imagedetailsList = imagesRepository.imagedetailsList
 
     /**
@@ -64,7 +66,7 @@ class ImageViewViewModel(
      * When the image is clicked, set the [_navigateToSelectedImage] [MutableLiveData]
      * @param imagedetails The [ImageDetails] that was clicked on.
      */
-    fun displayImageDetails(imagedetails: ImageDetails) {
+    fun displayImageDetails(imagedetails: DatabaseImageDetails) {
         _navigateToSelectedImage.value = imagedetails
     }
 
@@ -82,10 +84,10 @@ class ImageViewViewModel(
 
         }
     }
-    fun refreshImageDetails()
+   /* fun refreshImageDetails()
     {
         coroutineScope.launch {
             imagesRepository.refreshImageDetails()
         }
-    }
+    }*/
 }

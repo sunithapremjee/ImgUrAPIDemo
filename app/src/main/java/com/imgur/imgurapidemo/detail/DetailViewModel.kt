@@ -4,14 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.imgur.imgurapidemo.database.DatabaseImageDetails
 
-import com.imgur.imgurapidemo.domain.ImageDetails
 
-class DetailViewModel(imageDetails: ImageDetails, app: Application) : AndroidViewModel(app) {
-    private val _selectedImage = MutableLiveData<ImageDetails>()
+class DetailViewModel(imageDetails: DatabaseImageDetails, app: Application) : AndroidViewModel(app) {
+    private val _selectedImage = MutableLiveData<DatabaseImageDetails>()
 
     // The external LiveData for the SelectedImage
-    val selectedImage :LiveData<ImageDetails?>
+    val selectedImage :LiveData<DatabaseImageDetails?>
         get() = _selectedImage
 
     // Initialize the _selectedImage MutableLiveData

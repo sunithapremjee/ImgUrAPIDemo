@@ -1,6 +1,7 @@
 package com.imgur.imgurapidemo.database
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.imgur.imgurapidemo.domain.ImageDetails
 
@@ -25,7 +26,7 @@ interface ImageDatabaseDao {
      * Selects and returns the row that matches
      */
     @Query("SELECT * from DatabaseImageDetails WHERE id = :key")
-    fun get(key: Long): DatabaseImageDetails?
+    fun get(key: String): DatabaseImageDetails?
 
    /* Delete all items with nsfw = true
    * */
@@ -46,9 +47,7 @@ interface ImageDatabaseDao {
      * sorted in descending order.
      */
     @Query("SELECT * FROM DatabaseImageDetails")
-    fun getAllImageDetails(): LiveData<List<DatabaseImageDetails>>
-
-
+    fun getAllImageDetails(): DataSource.Factory<Int, DatabaseImageDetails>
 
     /**
      * Selects and returns the image with given id.

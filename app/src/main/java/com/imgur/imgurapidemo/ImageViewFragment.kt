@@ -82,7 +82,7 @@ class ImageViewFragment : Fragment() {
                 return true
             }
             R.id.refresh -> {
-                viewModel.refreshImageDetails()
+               // viewModel.refreshImageDetails()
                 return true
             }
         }

@@ -4,7 +4,7 @@ import com.imgur.imgurapidemo.database.DatabaseImageDetails
 import com.imgur.imgurapidemo.domain.ImageDetails
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.RawValue
+
 
 @JsonClass(generateAdapter = true)
 data class NetworkImageDetailsContainer(

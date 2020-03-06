@@ -3,10 +3,11 @@ package com.imgur.imgurapidemo.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.imgur.imgurapidemo.domain.ImageDetails
+import com.imgur.imgurapidemo.database.DatabaseImageDetails
+
 
 class DetailViewModelFactory(
-    private val imageDetails: ImageDetails,
+    private val imageDetails: DatabaseImageDetails,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

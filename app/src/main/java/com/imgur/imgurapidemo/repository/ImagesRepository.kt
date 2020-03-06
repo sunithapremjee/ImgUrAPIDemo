@@ -1,7 +1,12 @@
 package com.imgur.imgurapidemo.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.imgur.imgurapidemo.database.DatabaseImageDetails
+import com.imgur.imgurapidemo.database.ImageBoundaryCallback
 import com.imgur.imgurapidemo.database.ImageDatabase
 import com.imgur.imgurapidemo.database.asDomainModel
 import com.imgur.imgurapidemo.domain.ImageDetails
@@ -16,10 +21,17 @@ class ImagesRepository(private val database: ImageDatabase) {
     /**
      * Images that can be shown on the screen.
      */
-    val imagedetailsList: LiveData<List<ImageDetails>> =
-        Transformations.map(database.imageDatabaseDao.getAllImageDetails()) {
-            it.asDomainModel()
-        }
+
+    fun InitialzeImageDetails():LiveData<PagedList<DatabaseImageDetails>> {
+        val dataSourceFactory = database.imageDatabaseDao.getAllImageDetails()
+
+        val boundaryCallback = ImageBoundaryCallback(this)
+
+        return LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
+            .setBoundaryCallback(boundaryCallback).build()
+    }
+
+    val imagedetailsList: LiveData<PagedList<DatabaseImageDetails>> = InitialzeImageDetails()
 
     /**
      * Refresh the ImageDetails stored in the offline cache.
@@ -30,9 +42,9 @@ class ImagesRepository(private val database: ImageDatabase) {
      *
      * To actually load the ImageDetails for use, observe [ImageDetails]
      */
-    suspend fun refreshImageDetails() {
+    suspend fun refreshImageDetails(page:Int) {
         withContext(Dispatchers.IO) {
-            val imageDetailsList = ImagesAPI.retrofitService.getImagedetails().await()
+            val imageDetailsList = ImagesAPI.retrofitService.getImagedetails(page).await()
             database.imageDatabaseDao.insert(*imageDetailsList.asDatabaseModel())
         }
     }
@@ -42,5 +54,10 @@ class ImagesRepository(private val database: ImageDatabase) {
 
             database.imageDatabaseDao.deleteNSFWItems()
         }
+    }
+
+    companion object {
+
+        private const val DATABASE_PAGE_SIZE = 20
     }
 }

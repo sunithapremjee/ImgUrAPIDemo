@@ -10,6 +10,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import timber.log.Timber
 
 
@@ -53,11 +55,12 @@ interface ImgUrAPIService{
      * Returns a Coroutine [Deferred] [List] of [NetworkImageDetailsContainer] which can be fetched with await() if
      * in a Coroutine scope.
      */
-    @GET("gallery/r/funny")
-    fun getImagedetails():
+    @GET("gallery/r/funny/{page}")
+    fun getImagedetails(@Path("page") page:Int):
 
     // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
             Deferred<NetworkImageDetailsContainer>
+
 }
 
 /**

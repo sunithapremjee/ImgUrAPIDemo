@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <ImageView
+             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
                 android:layout_height="266dp"
@@ -39,6 +39,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_photo_image" />
             <TextView
+                android:id="@+id/labelViews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:textSize="16sp"
+                android:text="Views"
+
+                app:layout_constraintEnd_toStartOf="@+id/textViews"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTitle"/>
+            <TextView
                 android:id="@+id/textViews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,8 +61,23 @@
                 android:padding="@dimen/cardview_default_elevation"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelViews"
                 app:layout_constraintTop_toBottomOf="@id/textTitle" />
+            <TextView
+                android:id="@+id/labelVotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:textSize="16sp"
+                android:text="Votes"
+
+                app:layout_constraintEnd_toStartOf="@+id/textVotes"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelViews"/>
 
             <TextView
                 android:id="@+id/textVotes"
@@ -57,7 +87,7 @@
                 android:padding="@dimen/cardview_default_elevation"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelVotes"
                 app:layout_constraintTop_toBottomOf="@id/textViews" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

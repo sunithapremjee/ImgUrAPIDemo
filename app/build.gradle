@@ -87,4 +87,5 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
 
     implementation "androidx.paging:paging-runtime:$pagingVersion"
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

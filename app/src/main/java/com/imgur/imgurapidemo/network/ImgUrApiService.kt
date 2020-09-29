@@ -17,7 +17,7 @@ import timber.log.Timber
 
 private const val BASE_URL = "https://api.imgur.com/3/"
 
-val clientId = "be10dde89a99596"
+val clientId = ""
 var okHttpClient = OkHttpClient.Builder()
     .addInterceptor { chain ->
         var request = chain.request()
